@@ -1,12 +1,14 @@
-# Reporte Tecnico - Pet Health Vault
+# Reporte Técnico: Pet Health Vault
 
-Lógica del Programa:
-El contrato permite registrar mascotas y guardar su historial clinico en la blockchain. Se uso el framework Anchor para la seguridad.
+## Almacenamiento y PDAs
+Este contrato utiliza **Program Derived Addresses (PDAs)** para asegurar que cada mascota esté vinculada de forma única a su dueño.
 
-Puntos clave:
-* PDAs: Se usaron Program Derived Addresses para que cada dueño tenga una cuenta unica basada en su llave publica.
-* Espacio: Se limito el historial a 10 consultas para controlar el costo de renta en Solana.
-* Seguridad: Solo el dueño que registro a la mascota puede agregar nuevas consultas medicas.
+### Estructura de la PDA
+La dirección de la cuenta de la mascota se deriva utilizando:
+- La semilla (seed) estática: `"expediente"`
+- La llave pública del dueño (`owner`)
 
-Nota sobre las pruebas:
-Para que el programa funcione, primero se debe inicializar la cuenta con registrarMascota. Si se intenta usar otra funcion antes, el programa dara un error de cuenta no inicializada.
+### Gestión de Espacio
+Se ha calculado el espacio necesario para soportar:
+- **Nombre y Raza**: Cadenas de texto con límites definidos.
+- **Historial**: Un vector que permite almacenar múltiples consultas médicas, optimizando el uso de memoria en la red de Solana.
