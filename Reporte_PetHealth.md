@@ -12,3 +12,4 @@ La dirección de la cuenta de la mascota se deriva utilizando:
 Se ha calculado el espacio necesario para soportar:
 - **Nombre y Raza**: Cadenas de texto con límites definidos.
 - **Historial**: Un vector que permite almacenar múltiples consultas médicas, optimizando el uso de memoria en la red de Solana.
+
